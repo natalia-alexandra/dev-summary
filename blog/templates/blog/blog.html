@@ -3,6 +3,8 @@
 
 {% include "patrials/head.html" %}
 
+
+
 <body>
     {% include "patrials/navbar.html" %}
 
@@ -17,9 +19,21 @@
                     <a href="{% url 'article' article.id %}">
                         {{article.title}}
                     </a>
-                    <p>{{article.pub_date_pretty}}</p>
-                    <img src="{{ article.image.url }}" width="250" alt="article image">
-                    <p>{{article.summary}}</p>
+                    <div>
+
+                        <p>{{article.categories}}</p>
+                        <p>{{article.pub_date_pretty}}</p>
+                        {% if article.image %}
+                        <div class="img-thumbnail">
+                            <img src="{{ article.image.url }}" width="250" alt="article image">
+                        </div>
+                        {% else %}
+                        <div class="img-thumbnail">
+                            <img src="{{ article.image_url }}" width="250" alt="article image">
+                        </div>
+                        {% endif %}
+                        <p>{{article.summary|safe}}</p>
+                    </div>
                 </article>
                 {% endfor %}
             </section>

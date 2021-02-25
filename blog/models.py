@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from ckeditor.fields import RichTextField
 
 # User/Author
 User = get_user_model()
@@ -27,7 +28,7 @@ class Category(models.Model):
 
 class Blog(models.Model):
     title = models.CharField(max_length=255)
-    content = models.TextField()
+    content = RichTextField()
     image = models.ImageField(upload_to='images/', null=True, blank=True)
     image_url = models.CharField(max_length=500, default=None, blank=True)
     categories = models.ManyToManyField(Category)
